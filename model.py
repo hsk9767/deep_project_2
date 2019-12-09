@@ -62,7 +62,7 @@ class convnet(nn.Module):
             nn.MaxPool2d(2)
         )
         self.layer4 = nn.Sequential(
-            nn.Linear(4*4*128, 2048)
+            nn.Linear(4*4*128, 2048),
             nn.ReLU()
         )
         
