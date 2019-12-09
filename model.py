@@ -42,6 +42,7 @@ import torch.nn as nn
 ##새로운 구조를 하는데 batch size 3 -> 걸린 시간 : 4m31s, acc : 0.9678 %
 ## 50으로 두 개 뽑은 다음에 더할 때에는 -> 걸린 시간 : 4m41s, acc : 0.972 %
 ##그럼 50으로 뽑은 다음에 더할 때로 해서 fc 단에 leakyrelu 사용 -> 걸린 시간 : 4m23s, acc : 0.9754 %
+##똑같이 다시 해봤을 때 4분 51초, acc : 97.24%
 
 class convnet(nn.Module):
     def __init__(self):
