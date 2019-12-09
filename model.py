@@ -52,9 +52,22 @@ class convnet(nn.Module):
         )
         self.layer2 = nn.Sequential(
             nn.Linear( 13 * 13 * 64, 2048),
-            nn.ReLU(),
-            nn.Linear(2048, 50)
+            nn.ReLU()
         )
+        self.layer3 = nn.Sequential(
+            nn.Conv2d(64, 128, 3, stride = 1),
+            nn.ReLU(),
+            nn.Conv2d(128, 128, 3, stride = 1),
+            nn.ReLU(),
+            nn.MaxPool2d(2)
+        )
+        self.layer4 = nn.Sequential(
+            nn.Linear(4*4*128, 2048)
+            nn.ReLU()
+        )
+        
+        self.layer5 = nn.Linear(2048, 50)
+        
 # #         self.layer3 = nn.Sequential(
 # #             nn.Conv2d(32, 64, 3, stride = 1),
 # #             nn.BatchNorm2d(32),
@@ -75,5 +88,15 @@ class convnet(nn.Module):
 
     def forward(self, x):
         x = self.layer1(x)
+        
+        x_1 = x.clone()
+        x_1 = self.layer3(x_1)
+        x_1 = x_1.view(-1, 4*4*128)
+        x_1 = self.layer4(x_1)
+        
         x = x.view(-1, 13 * 13 * 64)
-        return self.layer2(x)
+        x = x.layer2(x)
+        
+        x += x_1
+        
+        return self.layer5(x)
