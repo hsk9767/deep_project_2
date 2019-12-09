@@ -37,6 +37,9 @@ import torch.nn as nn
 ##위랑 동일한데 cnn 출력을 (64, 64) 로 해보기 ->걸린 시간 : 4m45s, acc : 4862 / 5000
 ## cnn kernel 을 모두 3 size 로. -> 7m33s, acc : 96.6%
 
+##새로운 구조 -> 8분 에 97%
+##새로운 구조를 하는데, x_1 은 이미 2048이니까 2048 로 가는 Linear 하지 않고 해 보기. ->
+
 class convnet(nn.Module):
     def __init__(self):
         super().__init__()
@@ -92,7 +95,7 @@ class convnet(nn.Module):
         x_1 = x.clone()
         x_1 = self.layer3(x_1)
         x_1 = x_1.view(-1, 4*4*128)
-        x_1 = self.layer4(x_1)
+#         x_1 = self.layer4(x_1)
         
         x = x.view(-1, 13 * 13 * 64)
         x = self.layer2(x)
