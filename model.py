@@ -40,7 +40,8 @@ import torch.nn as nn
 ##새로운 구조 -> 8분 에 97%
 ##새로운 구조를 하는데, x_1 은 이미 2048이니까 2048 로 가는 Linear 하지 않고 해 보기. -> 시간이 너무 느렸음.
 ##새로운 구조를 하는데 batch size 3 -> 걸린 시간 : 4m31s, acc : 0.9678 %
-##d
+## 50으로 두 개 뽑은 다음에 더할 때에는 -> 걸린 시간 : 4m41s, acc : 0.972 %
+##그럼 50으로 뽑은 다음에 더할 때로 해서 fc 단에 leakyrelu 사용 ->
 
 class convnet(nn.Module):
     def __init__(self):
@@ -57,7 +58,7 @@ class convnet(nn.Module):
         )
         self.layer2 = nn.Sequential(
             nn.Linear( 13 * 13 * 64, 2048),
-            nn.ReLU()
+            nn.LeakyReLU(0.2, inplace = True)
         )
         self.layer3 = nn.Sequential(
             nn.Conv2d(64, 128, 3, stride = 1),
