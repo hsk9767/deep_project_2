@@ -95,7 +95,7 @@ class convnet(nn.Module):
         x_1 = self.layer4(x_1)
         
         x = x.view(-1, 13 * 13 * 64)
-        x = x.layer2(x)
+        x = self.layer2(x)
         
         x += x_1
         
