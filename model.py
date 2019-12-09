@@ -44,7 +44,7 @@ import torch.nn as nn
 ##그럼 50으로 뽑은 다음에 더할 때로 해서 fc 단에 leakyrelu 사용 -> 걸린 시간 : 4m23s, acc : 0.9754 %
 ##똑같이 다시 해봤을 때 4분 51초, acc : 97.24%
 ##또 똑같이 해봤을 때 4분 44초, acc : 97.3%
-##마지막 출력을 양날개의 50 벡터 평균으로 ->
+##마지막 출력을 양날개의 50 벡터 평균으로 -> 4분 49초, 96.7%
 
 class convnet(nn.Module):
     def __init__(self):
@@ -118,4 +118,4 @@ class convnet(nn.Module):
         x = self.layer5(x)
         
         
-        return (x + x_1)/2.0
+        return x + x_1
