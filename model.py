@@ -40,6 +40,7 @@ import torch.nn as nn
 ##새로운 구조 -> 8분 에 97%
 ##새로운 구조를 하는데, x_1 은 이미 2048이니까 2048 로 가는 Linear 하지 않고 해 보기. -> 시간이 너무 느렸음.
 ##새로운 구조를 하는데 batch size 3 -> 걸린 시간 : 4m31s, acc : 0.9678 %
+##d
 
 class convnet(nn.Module):
     def __init__(self):
@@ -65,11 +66,7 @@ class convnet(nn.Module):
             nn.ReLU(),
             nn.MaxPool2d(2)
         )
-        self.layer4 = nn.Sequential(
-            nn.Linear(4*4*128, 2048),
-            nn.ReLU()
-        )
-        
+        self.layer4 = nn.Linear(4*4*128, 50)
         self.layer5 = nn.Linear(2048, 50)
         
 # #         self.layer3 = nn.Sequential(
@@ -90,17 +87,31 @@ class convnet(nn.Module):
             
 #         )
 
-    def forward(self, x):
+#     def forward(self, x):
+#         x = self.layer1(x)
+        
+#         x_1 = x.clone()
+#         x_1 = self.layer3(x_1)
+#         x_1 = x_1.view(-1, 4*4*128)
+# #         x_1 = self.layer4(x_1)
+        
+#         x = x.view(-1, 13 * 13 * 64)
+#         x = self.layer2(x)
+        
+#         x += x_1
+        
+#         return self.layer5(x)
+    def forward(self, x): ##50으로 나온 값을 더하기
         x = self.layer1(x)
         
         x_1 = x.clone()
         x_1 = self.layer3(x_1)
         x_1 = x_1.view(-1, 4*4*128)
-#         x_1 = self.layer4(x_1)
+        x_1 = self.layer4(x_1)
         
         x = x.view(-1, 13 * 13 * 64)
         x = self.layer2(x)
+        x = self.layer5(x)
         
-        x += x_1
         
-        return self.layer5(x)
+        return x + x_1
