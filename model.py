@@ -50,7 +50,7 @@ import torch.nn as nn
 ## batch 3로 하고 epoch 4 로 해보겠음. 걸린 시간 : 4m1s, acc : 0.9748 %
 ##learning_rate -> 0.0005로 별 효과 없음
 ##learnning rate 0.00007로 별 효과 없음
-##weight decay 를 낮춰보기
+##weight decay 를 낮춰보기 -> 여전히 97.4%
 
 
 class Swish(nn.Module):
