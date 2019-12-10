@@ -27,7 +27,7 @@ model = convnet().to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.00007, weight_decay = 1e-5)
 
-num_epochs = 4
+num_epochs = 2
 losses = []
 for epoch in range(num_epochs):
     for i, (images, labels) in enumerate(train_loader):
@@ -43,8 +43,6 @@ for epoch in range(num_epochs):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        
-        losses.append(float(loss.item()))
 
         if i%50 == 0:
             print(f"Epoch : {epoch+1} | loss for {i*b_size} : {loss}")
@@ -54,7 +52,6 @@ for epoch in range(num_epochs):
 end = time.time()
 duration = end - start
 print("걸린 시간 : {}m{}s".format(int(duration//60), int(duration%60)))
-plt.plot(losses)
 
 # Test after Training is done
 with torch.no_grad():
