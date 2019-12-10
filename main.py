@@ -24,11 +24,6 @@ val_loader = torch.utils.data.DataLoader(dataset=val_dataset,
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = convnet().to(device)
 
-def init_weights(m):
-    if type(m) == nn.Conv2d:
-        torch.nn.init.xavier_uniform(m.weight)
-model.apply(init_weights)
-
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay = 1e-5)
 
