@@ -6,7 +6,7 @@ from model import convnet
 from font_dataset import FontDataset
 
 start = time.time()
-b_size = 1
+b_size = 3
 
 torch.manual_seed(7777)
 torch.cuda.manual_seed(7777)
@@ -27,7 +27,7 @@ model = convnet().to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay = 1e-5)
 
-num_epochs = 2
+num_epochs = 4
 losses = []
 for epoch in range(num_epochs):
     for i, (images, labels) in enumerate(train_loader):
