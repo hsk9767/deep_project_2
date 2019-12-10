@@ -80,8 +80,8 @@ class convnet(nn.Module):
         )
         self.layer2 = nn.Sequential(
             nn.Linear( 13 * 13 * 64, 2048),
-#             nn.LeakyReLU(0.2, inplace = True)
-            nn.ReLU()
+            nn.LeakyReLU(0.2, inplace = True)
+#             nn.ReLU()
 #             Swish()
         )
         self.layer3 = nn.Sequential(
