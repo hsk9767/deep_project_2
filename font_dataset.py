@@ -39,7 +39,7 @@ class FontDataset():
         single_npy_path = npy_entry[index]
         # print(single_npy_path)
 
-        single_npy = np.load(single_npy_path, allow_pickle=True)[0]#[:, :, 0]
+        single_npy = np.load(single_npy_path, allow_pickle=True)[0][:, :, 0]
         # single_npy_edge = cv2.Laplacian(single_npy, cv2.CV_32F, ksize = 3)
         # single = np.zeros((single_npy.shape[0], single_npy.shape[1], 2), dtype = np.float32)
         # single[:,:,0] = single_npy
