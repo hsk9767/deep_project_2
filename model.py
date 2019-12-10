@@ -65,7 +65,7 @@ class convnet(nn.Module):
         super().__init__()
         self.layer1 = nn.Sequential(
             # nn.Conv2d(1, 6, 5, stride = 1, padding = 2),
-            nn.Conv2d(1,64,5, stride = 1),
+            nn.Conv2d(3,64,5, stride = 1),
             nn.ReLU(),
 #             Swish(),
             nn.Conv2d(64, 64, 3, stride = 1),
