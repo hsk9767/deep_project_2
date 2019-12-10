@@ -47,7 +47,7 @@ for epoch in range(num_epochs):
         losses.append(float(loss.item()))
 
         if i%50 == 0:
-            print(f"Epoch : {i+1} | loss for {i*b_size} : {loss}")
+            print(f"Epoch : {epoch+1} | loss for {i*b_size} : {loss}")
         
         
 
