@@ -6,7 +6,7 @@ from model import convnet
 from font_dataset import FontDataset
 
 start = time.time()
-print(time)
+b_size = 3
 
 torch.manual_seed(7777)
 torch.cuda.manual_seed(7777)
@@ -16,7 +16,7 @@ val_dir = './npy_val'
 train_dataset = FontDataset(train_dir)
 val_dataset = FontDataset(val_dir)
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
-                                           batch_size=3, shuffle=True)
+                                           batch_size=b_size, shuffle=True)
 
 val_loader = torch.utils.data.DataLoader(dataset=val_dataset,
                                          batch_size=1)
@@ -47,7 +47,7 @@ for epoch in range(num_epochs):
         losses.append(float(loss.item()))
 
         if i%50 == 0:
-            print(f"loss for {i} : {loss}")
+            print(f"loss for {i*b_size} : {loss}")
         
         
 
