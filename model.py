@@ -46,6 +46,8 @@ import torch.nn as nn
 ##또 똑같이 해봤을 때 4분 44초, acc : 97.3%
 ##마지막 출력을 양날개의 50 벡터 평균으로 -> 4분 49초, 96.7%
 
+##최종 버전으로 만들 때, p-100 으로 바꾸고 batch 1 로 하니까 걸린 시간 : 5m0s, acc : 0.9772 %
+
 class Swish(nn.Module):
     def forward(self, x):
         return x*torch.sigmoid(x)
