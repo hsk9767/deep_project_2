@@ -46,6 +46,10 @@ import torch.nn as nn
 ##또 똑같이 해봤을 때 4분 44초, acc : 97.3%
 ##마지막 출력을 양날개의 50 벡터 평균으로 -> 4분 49초, 96.7%
 
+class Swish(nn.Module):
+    def forward(self, x):
+        return x*torch.sigmoid(x)
+
 class convnet(nn.Module):
     def __init__(self):
         super().__init__()
@@ -53,10 +57,16 @@ class convnet(nn.Module):
             # nn.Conv2d(1, 6, 5, stride = 1, padding = 2),
             nn.Conv2d(1,64,5, stride = 1),
 #             nn.BatchNorm2d(16),
-            nn.ReLU(),
+            
+#             nn.ReLU(),
+            Swish(),
+            
 #             nn.MaxPool2d(2)
             nn.Conv2d(64, 64, 3, stride = 1),
-            nn.ReLU(),
+            
+#             nn.ReLU(),
+            Swish(),
+            
             nn.MaxPool2d(2)
         )
         self.layer2 = nn.Sequential(
@@ -65,46 +75,21 @@ class convnet(nn.Module):
         )
         self.layer3 = nn.Sequential(
             nn.Conv2d(64, 128, 3, stride = 1),
-            nn.ReLU(),
+            
+#             nn.ReLU(),
+            Swish(),
+            
             nn.Conv2d(128, 128, 3, stride = 1),
-            nn.ReLU(),
+            
+#             nn.ReLU(),
+            Swish(),
+            
             nn.MaxPool2d(2)
         )
         self.layer4 = nn.Linear(4*4*128, 50)
         self.layer5 = nn.Linear(2048, 50)
         
-# #         self.layer3 = nn.Sequential(
-# #             nn.Conv2d(32, 64, 3, stride = 1),
-# #             nn.BatchNorm2d(32),
-# #             nn.ReLU(),
-# #             nn.MaxPool2d(2)
-# #         )
-#         self.layer4 = nn.Sequential(
-            
-#         )
-# #         self.layer5 = nn.Sequential(
-# #             nn.Linear(150, 100),
-# #             nn.ReLU()
-# #         )
-#         self.layer6 = nn.Sequential(
-#             # nn.Dropout(0.3),
-            
-#         )
 
-#     def forward(self, x):
-#         x = self.layer1(x)
-        
-#         x_1 = x.clone()
-#         x_1 = self.layer3(x_1)
-#         x_1 = x_1.view(-1, 4*4*128)
-# #         x_1 = self.layer4(x_1)
-        
-#         x = x.view(-1, 13 * 13 * 64)
-#         x = self.layer2(x)
-        
-#         x += x_1
-        
-#         return self.layer5(x)
     def forward(self, x): ##50으로 나온 값을 더하기
         x = self.layer1(x)
         
