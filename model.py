@@ -56,6 +56,8 @@ import torch.nn as nn
 ##한번, channel 을 3 개 전부 다 가져오는 걸로 바꿔볼까. -> 별 효과 없음.
 ##Training shuffle False 로 함 -> 97.1%
 
+##Normalize 안 해서 얻은 결과 -> 걸린 시간 : 4m28s, acc : 0.9702 %
+
 
 class Swish(nn.Module):
     def forward(self, x):
