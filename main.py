@@ -6,7 +6,7 @@ from model import convnet
 from font_dataset import FontDataset
 
 start = time.time()
-b_size = 3
+b_size = 1
 
 torch.manual_seed(7777)
 torch.cuda.manual_seed(7777)
@@ -16,16 +16,16 @@ val_dir = './npy_val'
 train_dataset = FontDataset(train_dir)
 val_dataset = FontDataset(val_dir)
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
-                                           batch_size=b_size, shuffle=True)
+                                           batch_size = b_size, shuffle=True)
 
 val_loader = torch.utils.data.DataLoader(dataset=val_dataset,
-                                         batch_size=1)
+                                         batch_size = b_size)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = convnet().to(device)
 
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=0.00007, weight_decay = 1e-5)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay = 7e-6)
 
 num_epochs = 2
 losses = []
