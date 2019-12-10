@@ -53,7 +53,7 @@ import torch.nn as nn
 ##weight decay 를 낮춰보기 -> 여전히 97.4%
 
 ##그냥 오리지널하게, batch 1, epoch 2 로 할 때에 97.72% 를 얻는다.
-##한번, channel 을 3 개 전부 다 가져오는 걸로 바꿔볼까.
+##한번, channel 을 3 개 전부 다 가져오는 걸로 바꿔볼까. -> 별 효과 없음.
 
 
 class Swish(nn.Module):
@@ -65,7 +65,7 @@ class convnet(nn.Module):
         super().__init__()
         self.layer1 = nn.Sequential(
             # nn.Conv2d(1, 6, 5, stride = 1, padding = 2),
-            nn.Conv2d(3,64,5, stride = 1),
+            nn.Conv2d(1,64,5, stride = 1),
             nn.ReLU(),
 #             Swish(),
             nn.Conv2d(64, 64, 3, stride = 1),
