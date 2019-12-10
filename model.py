@@ -47,7 +47,8 @@ import torch.nn as nn
 ##마지막 출력을 양날개의 50 벡터 평균으로 -> 4분 49초, 96.7%
 
 ##최종 버전으로 만들 때, p-100 으로 바꾸고 batch 1 로 하니까 걸린 시간 : 5m0s, acc : 0.9772 %
-## batch 3로 하고 epoch 4 로 해보겠음.
+## batch 3로 하고 epoch 4 로 해보겠음. 걸린 시간 : 4m1s, acc : 0.9748 %
+##learning_rate -> 0.0005로 
 
 
 class Swish(nn.Module):
