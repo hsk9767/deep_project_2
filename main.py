@@ -19,13 +19,13 @@ train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                            batch_size = b_size, shuffle=True)
 
 val_loader = torch.utils.data.DataLoader(dataset=val_dataset,
-                                         batch_size = b_size)
+                                         batch_size = 1)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = convnet().to(device)
 
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)#, weight_decay = 7e-6)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.0001), weight_decay = 7e-6)
 
 num_epochs = 2
 losses = []
