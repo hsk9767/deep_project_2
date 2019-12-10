@@ -52,6 +52,9 @@ import torch.nn as nn
 ##learnning rate 0.00007로 별 효과 없음
 ##weight decay 를 낮춰보기 -> 여전히 97.4%
 
+##그냥 오리지널하게, batch 1, epoch 2 로 할 때에 97.72% 를 얻는다.
+##한번, channel 을 3 개 전부 다 가져오는 걸로 바꿔볼까.
+
 
 class Swish(nn.Module):
     def forward(self, x):
