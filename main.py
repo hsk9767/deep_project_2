@@ -6,7 +6,7 @@ from model import convnet
 from font_dataset import FontDataset
 
 start = time.time()
-b_size = 3
+b_size = 1
 
 torch.manual_seed(7777)
 torch.cuda.manual_seed(7777)
