@@ -54,6 +54,7 @@ import torch.nn as nn
 
 ##그냥 오리지널하게, batch 1, epoch 2 로 할 때에 97.72% 를 얻는다.
 ##한번, channel 을 3 개 전부 다 가져오는 걸로 바꿔볼까. -> 별 효과 없음.
+##Training shuffle False 로 함.
 
 
 class Swish(nn.Module):
